@@ -1,9 +1,9 @@
-namespace EverythingNet.Interfaces
-{
-  using System.Collections.Generic;
+using System.Collections.Generic;
 
-  public interface INameQueryable : IQueryable
-  {
+namespace EverythingNet.Interfaces;
+
+public interface INameQueryable : IQueryable
+{
     INameQueryable Contains(string pattern);
 
     INameQueryable StartWith(string pattern);
@@ -15,5 +15,4 @@ namespace EverythingNet.Interfaces
     INameQueryable Extensions(IEnumerable<string> extensions);
 
     INameQueryable Extensions(params string[] extensions);
-  }
 }

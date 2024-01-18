@@ -1,7 +1,7 @@
-﻿namespace EverythingNet.Interfaces
+﻿namespace EverythingNet.Interfaces;
+
+public interface IQuery
 {
-  public interface IQuery
-  {
     IQuery Not { get; }
 
     IQuery Files { get; }
@@ -29,5 +29,4 @@
     IImageQueryable Image { get; }
 
     IQueryable Queryable(IQueryable queryable);
-  }
 }

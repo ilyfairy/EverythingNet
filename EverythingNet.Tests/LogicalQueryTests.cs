@@ -1,78 +1,77 @@
 ﻿using EverythingNet.Core;
 using NUnit.Framework;
 
-namespace EverythingNet.Tests
+namespace EverythingNet.Tests;
+
+[TestFixture]
+public class LogicalQueryTests
 {
-  [TestFixture]
-  public class LogicalQueryTests
-  {
     private Everything everything;
 
     [SetUp]
     public void Setup()
     {
-      this.everything = new Everything();
+        this.everything = new Everything();
     }
 
     [TearDown]
     public void TearDown()
     {
-      this.everything.Dispose();
+        this.everything.Dispose();
     }
 
     [Test]
     public void And()
     {
-      var queryable = this.everything
-        .Search()
-        .Name
-        .StartWith("prefix")
-        .And
-        .Name
-        .EndWith("suffix");
+        var queryable = this.everything
+          .Search()
+          .Name
+          .StartWith("prefix")
+          .And
+          .Name
+          .EndWith("suffix");
 
-      Assert.That(queryable.ToString(), Is.EqualTo("startwith:prefix endwith:suffix"));
+        Assert.That(queryable.ToString(), Is.EqualTo("startwith:prefix endwith:suffix"));
     }
 
     [Test]
     public void AndQuery()
     {
-      var sizeQuery = this.everything
-        .Search()
-        .Size
-        .LessOrEqualThan(100);
-      var queryable = this.everything
-        .Search()
-        .Name
-        .StartWith("prefix")
-        .And
-        .Queryable(sizeQuery);
+        var sizeQuery = this.everything
+          .Search()
+          .Size
+          .LessOrEqualThan(100);
+        var queryable = this.everything
+          .Search()
+          .Name
+          .StartWith("prefix")
+          .And
+          .Queryable(sizeQuery);
 
-      Assert.That(queryable.ToString(), Is.EqualTo("startwith:prefix size:<=100kb"));
+        Assert.That(queryable.ToString(), Is.EqualTo("startwith:prefix size:<=100kb"));
     }
 
 
     [Test]
     public void FilesQuery()
     {
-      var filesQuery = this.everything
-        .Search()
-        .Files
-        .Name;
+        var filesQuery = this.everything
+          .Search()
+          .Files
+          .Name;
 
-      Assert.That(filesQuery.ToString(), Is.EqualTo("files:"));
+        Assert.That(filesQuery.ToString(), Is.EqualTo("files:"));
     }
 
 
     [Test]
     public void FoldersQuery()
     {
-      var foldersQuery = this.everything
-        .Search()
-        .Folders
-        .Name;
+        var foldersQuery = this.everything
+          .Search()
+          .Folders
+          .Name;
 
-      Assert.That(foldersQuery.ToString(), Is.EqualTo("folders:"));
+        Assert.That(foldersQuery.ToString(), Is.EqualTo("folders:"));
     }
-  }
 }

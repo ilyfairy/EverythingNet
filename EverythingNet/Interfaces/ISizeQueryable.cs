@@ -1,9 +1,9 @@
-namespace EverythingNet.Interfaces
-{
-  using EverythingNet.Query;
+using EverythingNet.Query;
 
-  public interface ISizeQueryable : IQueryable
-  {
+namespace EverythingNet.Interfaces;
+
+public interface ISizeQueryable : IQueryable
+{
     ISizeQueryable Equal(int value);
 
     ISizeQueryable Equal(int value, SizeUnit u);
@@ -31,5 +31,4 @@ namespace EverythingNet.Interfaces
     ISizeQueryable Between(int min, int max, SizeUnit u);
 
     ISizeQueryable Between(int min, SizeUnit umin, int max, SizeUnit umax);
-  }
 }

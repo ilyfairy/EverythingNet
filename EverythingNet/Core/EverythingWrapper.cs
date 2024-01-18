@@ -1,32 +1,32 @@
-﻿namespace EverythingNet.Core
-{
-  using System;
-  using System.Runtime.InteropServices;
-  using System.Text;
-  using System.Threading;
+﻿using System;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading;
 
-  internal class EverythingWrapper
-  {
+namespace EverythingNet.Core;
+
+internal class EverythingWrapper
+{
     private static readonly ReaderWriterLockSlim locker = new ReaderWriterLockSlim();
 
     private class Locker : IDisposable
     {
-      private readonly ReaderWriterLockSlim locker;
+        private readonly ReaderWriterLockSlim locker;
 
-      public Locker(ReaderWriterLockSlim locker)
-      {
-        this.locker = locker;
-        this.locker.EnterWriteLock();
-      }
+        public Locker(ReaderWriterLockSlim locker)
+        {
+            this.locker = locker;
+            this.locker.EnterWriteLock();
+        }
 
-      public void Dispose()
-      {
-        this.locker.ExitWriteLock();
-      }
+        public void Dispose()
+        {
+            this.locker.ExitWriteLock();
+        }
     }
 
 #if WIN32
-    private const string EverythingDLL = EverythingDLL;
+private const string EverythingDLL = EverythingDLL;
 #else
     private const string EverythingDLL = "Everything64.dll";
 #endif
@@ -42,18 +42,18 @@
 
     public enum FileInfoIndex
     {
-      FileSize = 1,
-      FolderSize,
-      DateCreated,
-      DateModified,
-      DateAccessed,
-      Attributes
+        FileSize = 1,
+        FolderSize,
+        DateCreated,
+        DateModified,
+        DateAccessed,
+        Attributes
     }
 
 
-  internal static IDisposable Lock()
+    internal static IDisposable Lock()
     {
-      return new Locker(locker);
+        return new Locker(locker);
     }
 
     [DllImport(EverythingDLL)]
@@ -237,5 +237,4 @@
 
     [DllImport(EverythingDLL)]
     public static extern bool Everything_IsFileInfoIndexed(FileInfoIndex fileInfoType);
-  }
 }

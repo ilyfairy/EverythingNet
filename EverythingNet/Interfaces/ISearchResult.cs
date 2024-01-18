@@ -1,9 +1,9 @@
-namespace EverythingNet.Interfaces
-{
-  using System;
+using System;
 
-  public interface ISearchResult
-  {
+namespace EverythingNet.Interfaces;
+
+public interface ISearchResult
+{
     long Index { get; }
 
     bool IsFile { get; }
@@ -27,5 +27,4 @@ namespace EverythingNet.Interfaces
     DateTime Executed { get; }
 
     Exception LastException { get; }
-  }
 }

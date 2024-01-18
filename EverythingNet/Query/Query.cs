@@ -1,21 +1,19 @@
-﻿namespace EverythingNet.Query
+﻿using System.Collections.Generic;
+using System.Linq;
+using EverythingNet.Interfaces;
+using IQueryable = EverythingNet.Interfaces.IQueryable;
+
+namespace EverythingNet.Query;
+
+internal class Query : IQuery, IQueryGenerator
 {
-  using System.Collections.Generic;
-  using System.Linq;
-
-  using EverythingNet.Interfaces;
-
-  using IQueryable = Interfaces.IQueryable;
-
-  internal class Query : IQuery, IQueryGenerator
-  {
     private readonly IEverythingInternal everything;
     private readonly IQueryGenerator parent;
 
     public Query(IEverythingInternal everything, IQueryGenerator parent = null)
     {
-      this.everything = everything;
-      this.parent = parent;
+        this.everything = everything;
+        this.parent = parent;
     }
 
     public IQuery Not => new LogicalQuery(this.everything, this, "!");
@@ -46,16 +44,15 @@
 
     public IQueryable Queryable(IQueryable queryable)
     {
-      ((Queryable)queryable).SetParent(this);
+        ((Queryable)queryable).SetParent(this);
 
-      return queryable;
+        return queryable;
     }
 
     public RequestFlags Flags => this.parent?.Flags ?? 0;
 
     public virtual IEnumerable<string> GetQueryParts()
     {
-      return this.parent?.GetQueryParts() ?? Enumerable.Empty<string>();
+        return this.parent?.GetQueryParts() ?? Enumerable.Empty<string>();
     }
-  }
 }

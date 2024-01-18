@@ -1,7 +1,7 @@
-﻿namespace EverythingNet.Interfaces
+﻿namespace EverythingNet.Interfaces;
+
+public interface IFileQueryable : IQueryable
 {
-  public interface IFileQueryable : IQueryable
-  {
     IFileQueryable Roots();
 
     IFileQueryable Parent(string parentFolder);
@@ -19,5 +19,4 @@
     IFileQueryable Document(string search = null);
 
     IFileQueryable Duplicates(string search = null);
-  }
 }

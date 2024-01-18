@@ -1,9 +1,9 @@
-namespace EverythingNet.Interfaces
-{
-  using System;
+namespace EverythingNet.Interfaces;
 
-  public enum Dates
-  {
+using System;
+
+public enum Dates
+{
     Today,
     Yesterday,
     ThisWeek,
@@ -53,20 +53,20 @@ namespace EverythingNet.Interfaces
     NextYear,
     NextMonth,
     NextWeek
-  }
+}
 
-  public enum CountableDates
-  {
+public enum CountableDates
+{
     Seconds,
     Minutes,
     Hours,
     Weeks,
     Months,
     Years
-  }
+}
 
-  public interface IDateQueryable : IQueryable
-  {
+public interface IDateQueryable : IQueryable
+{
     IDateQueryable Equal(DateTime date);
 
     IDateQueryable Equal(Dates date);
@@ -86,5 +86,4 @@ namespace EverythingNet.Interfaces
     IDateQueryable Last(int count, CountableDates date);
 
     IDateQueryable Next(int count, CountableDates date);
-  }
 }

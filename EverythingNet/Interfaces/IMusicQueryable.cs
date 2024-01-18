@@ -1,7 +1,7 @@
-﻿namespace EverythingNet.Interfaces
+﻿namespace EverythingNet.Interfaces;
+
+public interface IMusicQueryable : IQueryable
 {
-  public interface IMusicQueryable : IQueryable
-  {
     IMusicQueryable Album(string album);
 
     IMusicQueryable Artist(string artist);
@@ -14,5 +14,4 @@
     IMusicQueryable Track(int? track);
 
     IMusicQueryable Comment(string comment);
-  }
 }
