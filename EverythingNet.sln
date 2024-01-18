@@ -9,6 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EverythingNet.Bench", "Ever
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EverythingNet.Tests", "EverythingNet.Tests\EverythingNet.Tests.csproj", "{157E59A0-552D-42FD-B7E2-70608E42A2E8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D4EBF5B8-BF61-4332-85A1-C0542BFFF4FE}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
